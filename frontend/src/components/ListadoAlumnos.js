@@ -16,13 +16,13 @@ const ListadoAlumnos = ({ lista }) => {
           </tr>
         </thead>
         <tbody>
-          {lista.map((item) => (
-             <tr key={item.legajoAlumno}>
-              <td>{item.legajoAlumno}</td>
-              <td>{item.nombre}</td>
-              <td>{item.apellido}</td>
-              <td>{item.fechaInscripcion}</td>
-              <td>{item.descripcion}</td>
+          {lista.map((items) => (
+             <tr key={items.legajoAlumno}>
+              <td>{items.legajoAlumno}</td>
+              <td>{items.nombre}</td>
+              <td>{items.apellido}</td>
+              <td>{items.fechaInscripcion}</td>
+              <td>{items.descripcion}</td>
              
             </tr>
           ))}

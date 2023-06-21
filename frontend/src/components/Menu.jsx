@@ -28,7 +28,7 @@ function Menu() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/profesores">
-                Proferoses
+                Profesores
               </NavLink>
             </li>
             <li className="nav-item">
