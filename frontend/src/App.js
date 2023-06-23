@@ -3,8 +3,7 @@ import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
 import Alumnos from './components/Alumnos';
 import Profesores from './components/Profesores';
-
-
+import Examenes from './components/Examenes';
 
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
@@ -19,6 +18,7 @@ function App() {
               <Route path="/inicio" element={<Inicio />} />
               <Route path="/profesores" element={<Profesores />} />
               <Route path="/alumnos" element={<Alumnos />} />
+              <Route path="/examenes" element={<Examenes />} />
               
               <Route path="*" element={<Navigate to="/inicio" replace />} />
             </Routes>
