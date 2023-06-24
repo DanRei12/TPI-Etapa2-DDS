@@ -31,7 +31,7 @@ const Profesores = () => {
         <div className="card-body">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3">
-              <label className="form-label">nombre:</label>
+              <label className="form-label">Nombre:</label>
               <input type="text" className="form-control" {...register('nombre')} />
             </div>
             <button type="submit" className="btn btn-primary">Buscar</button>
