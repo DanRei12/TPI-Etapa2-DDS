@@ -34,7 +34,7 @@ function Examenes() {
     //console.log("mounting Materias");
     async function BuscarMaterias() {
       let data = await materiasService.Buscar();
-      setMaterias(data.Materias);
+      setMaterias(data.Items);
     }
     BuscarMaterias();
     return () => {
