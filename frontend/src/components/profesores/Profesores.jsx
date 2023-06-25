@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import ProfesoresBuscar from "./ProfesoresBuscar";
+import ProfesoresListado from "./ProfesoresListado";
+import ProfesoresRegistro from "./ProfesoresRegistro";
 import modalDialogService from "../../services/modalDialog.service";
 import { profesoresService } from "../../services/profesores.service";
-import { profesores } from "../../../../../tpi-etapa-1/base-orm/sequelize-init";
+
 
 function Profesores() {
   const TituloAccionABMC = {
@@ -23,12 +26,12 @@ function Profesores() {
   const [Paginas, setPaginas] = useState([]);
 
   
-
+  /*
   // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
   useEffect(() => {
     async function BuscarProfesores() {
       let data = await profesoresService.Buscar();
-      setMaterias(data.Profesores);
+      setProfesores(data.Profesores);
     }
     BuscarProfesores();
     return () => {
@@ -36,7 +39,7 @@ function Profesores() {
     };
   }, []);
 
-
+  */
   async function Buscar(_pagina) {
     if (_pagina && _pagina !== Pagina) {
       setPagina(_pagina);
@@ -148,7 +151,7 @@ function Profesores() {
   return (
     <div>
       <div className="tituloPagina">
-        Examenes <small>{TituloAccionABMC[AccionABMC]}</small>
+        Profesores <small>{TituloAccionABMC[AccionABMC]}</small>
       </div>
 
       {AccionABMC === "L" && (
@@ -186,7 +189,7 @@ function Profesores() {
 
       {/* Formulario de alta/modificacion/consulta */}
       {AccionABMC !== "L" && (
-        <ProfesoresRegistro {...{ AccionABMC, Materias, Alumnos, Item, Grabar, Volver }} />
+        <ProfesoresRegistro {...{ AccionABMC, Item, Grabar, Volver }} />
       )}
     </div>
   );

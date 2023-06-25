@@ -6,12 +6,12 @@ export default function MateriasListado({
   Consultar,
   Modificar,
   ActivarDesactivar,
+  Buscar
   /*
   Imprimir,
   Pagina,
   RegistrosTotal,
   Paginas, */
-  Buscar,
 
 }) {
     return (
