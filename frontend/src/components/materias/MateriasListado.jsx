@@ -20,11 +20,8 @@ export default function MateriasListado({
             <thead>
               <tr>
                 <th className="text-center">Número Materia</th>
-                <th className="text-center">Legajo Profesor</th>
-                <th className="text-center">Lejago Alumno</th>
-                <th className="text-center">Número Comisión</th>
-                <th className="text-center">Fecha de creación</th>
                 <th className="text-center">Descripción</th>
+                <th className="text-center">Fecha de creación</th>
                 <th className="text-center text-nowrap">Acciones</th>
               </tr>
             </thead>
@@ -33,11 +30,8 @@ export default function MateriasListado({
                 Items.map((Item) => (
                   <tr key={Item.nroMateria}>
                     <td className="text-center">{Item.nroMateria}</td>
-                    <td className="text-center">{Item.legajoProfesor}</td>
-                    <td className="text-center">{Item.legajoAlumno}</td>
-                    <td className="text-center">{Item.nroComision}</td>
-                    <td className="text-center">{moment(Item.fechaCreacion).format("DD/MM/YYYY")}</td>
                     <td className="text-center">{Item.descripcion}</td>
+                    <td className="text-center">{moment(Item.fechaCreacion).format("DD/MM/YYYY")}</td>
                     <td className="text-center text-nowrap">
                         
                         <button

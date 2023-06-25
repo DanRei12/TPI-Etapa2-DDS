@@ -108,9 +108,7 @@ function Materias() {
       // }
   
       modalDialogService.Confirm(
-        "Esta seguro que quiere " +
-          (item.Activo ? "desactivar" : "activar") +
-          " el registro?",
+        "Esta seguro que quiere eliminar el registro?",
         undefined,
         undefined,
         undefined,
