@@ -4,6 +4,8 @@ import MateriasBuscar from "./MateriasBuscar";
 import MateriasListado from "./MateriasListado";
 import MateriasRegistro from "./MateriasRegistro";
 import { materiasService } from "../../services/materias.service";
+import moment from "moment";
+import modalDialogService from "../../services/modalDialog.service";
 //import { profesoresService } from "../../services/profesores.service";
 
 
@@ -18,6 +20,7 @@ function Materias() {
   const [AccionABMC, setAccionABMC] = useState("L");
 
   const [Descripcion, setDescripcion] = useState("");
+  const [Activo, setActivo] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -64,20 +67,16 @@ function Materias() {
         const data = await materiasService.BuscarPorId(item);
         setAccionABMC(accionABMC);
         setItem(data);
-        /*if (accionABMC === "C") {
-          alert("Consultando...");
-        }
-        if (accionABMC === "M") {
-          alert("Modificando...");
-        } */
       }
     
       function Consultar(item) {
         BuscarPorId(item, "C"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
       }
+
       function Modificar(item) {
         BuscarPorId(item, "M"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
       }
+    
     
       function Agregar() {
         setAccionABMC("A");
@@ -86,8 +85,9 @@ function Materias() {
             legajoProfesor: null,
             legajoAlumno: null,
             nroComision: null,
-            fechaCreacion: null,
+            fechaCreacion: moment(new Date()).format("YYYY-MM-DD"),
             descripcion: null,
+            activo: true,
           });
       
       }
@@ -95,42 +95,59 @@ function Materias() {
       function Imprimir() {
         alert("En desarrollo...");
         }
-
+      */
     async function ActivarDesactivar(item) {
-      const resp = window.confirm(
-        "Está seguro que quiere " +
-          (item.Activo ? "desactivar" : "activar") +
-          " el registro?"
-      );
-      if (resp) {
-        alert("Activando/Desactivando...");
-      }
-    }
-    */
-    async function Grabar(item) {
-        try
-        {
-          await materiasService.Grabar(item);
-        }
-        catch (error)
-        {
-          alert(error?.response?.data?.message ?? error.toString())
-          return;
-        }
-        await Buscar();
-        Volver();
-      
-        setTimeout(() => {
-          alert(
-            "Registro " +
-              (AccionABMC === "A" ? "agregado" : "modificado") +
-              " correctamente."
-          );
-        }, 0);
-      }
-      
-    
+      // const resp = window.confirm(
+      //   "Esta seguro que quiere " +
+      //     (item.Activo ? "desactivar" : "activar") +
+      //     " el registro?"
+      // );
+      // if (resp) {
+      //     await articulosService.ActivarDesactivar(item);
+      //     Buscar();
+      // }
   
+      modalDialogService.Confirm(
+        "Esta seguro que quiere " +
+          (item.Activo ? "desactivar" : "activar") +
+          " el registro?",
+        undefined,
+        undefined,
+        undefined,
+        async () => {
+          await materiasService.ActivarDesactivar(item);
+          await Buscar();
+        }
+      );
+    }
+      
+    async function Grabar(item) {
+      // agregar o modificar
+      await materiasService.Grabar(item);
+      await Buscar();
+      Volver();
+  
+      modalDialogService.Alert(
+        "Registro " +
+          (AccionABMC === "A" ? "agregado" : "modificado") +
+          " correctamente.",
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        "success"
+      );
+  
+      // setTimeout(() => {
+      //   alert(
+      //     "Registro " +
+      //       (AccionABMC === "A" ? "agregado" : "modificado") +
+      //       " correctamente."
+      //   );
+      // }, 0);
+    }
+
     // Volver/Cancelar desde Agregar/Modificar/Consultar
     function Volver() {
       setAccionABMC("L");
@@ -145,8 +162,8 @@ return (
     { AccionABMC === "L" && <MateriasBuscar
     Descripcion={Descripcion}
     setDescripcion={setDescripcion}
-    /*Activo={Activo}
-    setActivo={setActivo} */
+    Activo={Activo}
+    setActivo={setActivo} 
     Buscar={Buscar}
     Agregar={Agregar}
     />
@@ -158,8 +175,8 @@ return (
         Items,
         Consultar,
         Modificar,
-        /*ActivarDesactivar,
-        Imprimir,
+        ActivarDesactivar,
+        /*Imprimir,
         Pagina,
         RegistrosTotal,
         Paginas,*/

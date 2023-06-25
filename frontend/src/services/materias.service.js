@@ -14,11 +14,11 @@ async function BuscarPorId(item) {
   const resp = await axios.get(urlResource + "/" + item.nroMateria);
   return resp.data;
 }
-/*
+
 async function ActivarDesactivar(item) {
-  await axios.delete(urlResource + "/" + item.IdArticulo);
+  await axios.delete(urlResource + "/" + item.nroMateria);
 }
-*/
+
 async function Grabar(item) {
     if (item.nroMateria === 0) {
       await axios.post(urlResource, item);
@@ -28,6 +28,6 @@ async function Grabar(item) {
   }
   
   export const materiasService = {
-    Buscar,BuscarPorId,Grabar
+    Buscar,BuscarPorId, ActivarDesactivar, Grabar
   };
 
