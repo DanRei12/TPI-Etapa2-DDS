@@ -1,8 +1,8 @@
 import React from "react";
-export default function MateriasBuscar ({Nombre, setNombre, Buscar, Agregar}) {
+export default function MateriasBuscar ({Descripcion, setDescripcion, Buscar, Agregar}) {
 
     return (
-    <form name="FormBusqueda">
+    <form name="FormBusqueda" onSubmit={(e)=> e.preventDefault()}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-4 col-md-2">
@@ -12,8 +12,8 @@ export default function MateriasBuscar ({Nombre, setNombre, Buscar, Agregar}) {
             <input
               type="text"
               className="form-control"
-              onChange={(e) => setNombre(e.target.value)}
-              value={Nombre}
+              onChange={(e) => setDescripcion(e.target.value)}
+              value={Descripcion}
               maxLength="55"
               autoFocus
             />

@@ -28,19 +28,36 @@ function Materias() {
   // const [ArticulosFamilias, setArticulosFamilias] = useState(null);
 
   // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
+  /*
   useEffect(() => {
-    /*async function LegajoProfesor() {
+    async function BuscarLegajoProfesor() {
         let data = await profesoresService.Buscar();
         setArticulosFamilias(data);
       }
-      LegajoProfesor();
+      BuscarLegajoProfesor();
     }, []);
     */
     async function Buscar() {
-      alert("Buscando...");
+      //alert("Buscando...");
       // harcodeamos 2 articulos para probar
+      /*setItems ([
+        { "nroMateria":24,
+          "legajoProfesor":10231,
+          "legajoAlumno":75094,
+          "nroComision":551,
+          "fechaCreacion":"2005-12-05T09:00:00.000Z",
+          "descripcion":"Algebra"},
+        {
+          "nroMateria":50,
+          "legajoProfesor":12345,
+          "legajoAlumno":83231,
+          "nroComision":238,
+          "fechaCreacion":"2017-06-13T14:51:00.000Z",
+          "descripcion":"Análisis Numerico"},
+      ]); */
       const data = await materiasService.Buscar(Descripcion);
       setItems(data.Items);
+      console.log("Items: ", data.Items);
     }
 
     async function BuscarPorId(item, accionABMC) {
@@ -135,7 +152,7 @@ return (
     />
     }
 
-    {/* Tabla de resutados de busqueda y Paginador */}
+    {/* Tabla de resutados de busqueda */}
     { AccionABMC === "L" && Items?.length > 0 && <MateriasListado
     {...{
         Items,
@@ -164,7 +181,7 @@ return (
         )}
     </div>
 
-  )})
+  )
 }
 
 export { Materias };

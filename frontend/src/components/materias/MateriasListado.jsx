@@ -1,5 +1,5 @@
 import React from "react";
-//import moment from "moment";
+import moment from "moment";
 
 export default function MateriasListado({
   Items,
@@ -10,9 +10,9 @@ export default function MateriasListado({
   Imprimir,
   Pagina,
   RegistrosTotal,
-  Paginas,
+  Paginas, */
   Buscar,
-  */
+
 }) {
     return (
         <div className="table-responsive">
@@ -31,13 +31,14 @@ export default function MateriasListado({
               {Items &&
                 Items.map((Item) => (
                   <tr key={Item.nroMateria}>
-                    <td>{Item.nroMateria}</td>
-                    <td className="text-end">{Item.legajoProfesor}</td>
-                    <td className="text-end">{Item.legajoAlumno}</td>
-                    <td className="text-end">{Item.nroComision}</td>
-                    <td className="text-end">{Item.fechaCreacion}</td>
-                    <td className="text-end">{Item.descripcion}</td>
+                    <td className="text-center">{Item.nroMateria}</td>
+                    <td className="text-center">{Item.legajoProfesor}</td>
+                    <td className="text-center">{Item.legajoAlumno}</td>
+                    <td className="text-center">{Item.nroComision}</td>
+                    <td className="text-center">{moment(Item.fechaCreacion).format("DD/MM/YYYY")}</td>
+                    <td className="text-center">{Item.descripcion}</td>
                     <td className="text-center text-nowrap">
+                        
                         <button
                             className="btn btn-sm btn-outline-primary"
                             title="Consultar"

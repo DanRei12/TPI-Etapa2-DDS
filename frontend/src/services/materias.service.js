@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const urlResource = "http://localhost:4000/api/materias";
 
 async function Buscar(Descripcion) {
