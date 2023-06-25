@@ -51,8 +51,31 @@ export default function MateriasRegistro({
               )}
             </div>
           </div>
-
+          
           {/* campo Legajo Profesor */}
+
+          <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="Stock">
+                Legajo Profesor<span className="text-danger">*</span>:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+              <input
+                type="number"
+                {...register("legajoProfesor", {
+                  required: { value: true, message: "Legajo Profesor es requerido" },
+                })}
+                autoFocus
+                className={
+                  "form-control " + (errors?.legajoProfesor ? "is-invalid" : "")
+                }
+              />
+              <div className="invalid-feedback">{errors?.legajoProfesor?.message}</div>
+            </div>
+          </div>
+
+          {/* 
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoProfesor">
@@ -79,7 +102,7 @@ export default function MateriasRegistro({
 
             </div>
           </div>
-
+                */}
           {/* campo Legajo Alumno */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">

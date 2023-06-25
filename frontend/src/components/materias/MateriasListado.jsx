@@ -55,19 +55,19 @@ export default function MateriasListado({
                             <i className="fa fa-pencil"></i>
                         </button>
                         <button
-                    className={
-                      "btn btn-sm " +
-                      (Item.Activo
-                        ? "btn-outline-danger"
-                        : "btn-outline-success")
-                    }
-                    title={Item.Activo ? "Desactivar" : "Activar"}
-                    onClick={() => ActivarDesactivar(Item)}
-                  >
-                    <i
-                      className={"fa fa-" + (Item.Activo ? "times" : "check")}
-                    ></i>
-                  </button>
+                          className={
+                            "btn btn-sm " +
+                            (Item.Activo
+                              ? "btn-outline-danger"
+                              : "btn-outline-success")
+                          }
+                          title={Item.Activo ? "Desactivar" : "Activar"}
+                          onClick={() => ActivarDesactivar(Item)}
+                        >
+                          <i
+                            className={"fa fa-" + (Item.Activo ? "times" : "check")}
+                          ></i>
+                        </button>
                     </td>
                   </tr>
                 ))}
