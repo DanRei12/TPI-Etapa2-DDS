@@ -6,8 +6,9 @@ import MateriasRegistro from "./MateriasRegistro";
 import { materiasService } from "../../services/materias.service";
 import moment from "moment";
 import modalDialogService from "../../services/modalDialog.service";
-//import { profesoresService } from "../../services/profesores.service";
-
+import { profesoresService } from "../../services/profesores.service";
+import { alumnosService } from '../../services/alumnos.service';
+import { comisionesService } from "../../services/comisiones.service";
 
 function Materias() {
   const TituloAccionABMC = {
@@ -28,18 +29,35 @@ function Materias() {
   //const [Pagina, setPagina] = useState(1);
   //const [Paginas, setPaginas] = useState([]);
 
-  // const [ArticulosFamilias, setArticulosFamilias] = useState(null);
+  const [Profesores, setProfesores] = useState(null);
+  const [Alumnos, setAlumnos] = useState(null);
+  const [Comisiones, setComisiones] = useState(null);
 
   // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
-  /*
+
   useEffect(() => {
     async function BuscarLegajoProfesor() {
         let data = await profesoresService.Buscar();
-        setArticulosFamilias(data);
+        setProfesores(data);
       }
       BuscarLegajoProfesor();
     }, []);
-    */
+
+  useEffect(() => {
+    async function BuscarLegajoAlumno() {
+        let data = await alumnosService.Buscar();
+        setAlumnos(data);
+      }
+      BuscarLegajoAlumno();
+    }, []);
+
+    useEffect(() => {
+      async function BuscarComision() {
+        let data = await comisionesService.BuscarComisiones();
+        setComisiones(data);
+      }
+      BuscarComision();
+    }, []);
     async function Buscar() {
       //alert("Buscando...");
       // harcodeamos 2 articulos para probar
@@ -81,7 +99,7 @@ function Materias() {
       function Agregar() {
         setAccionABMC("A");
         setItem({
-            nroMateria: null,
+            nroMateria: 0,
             legajoProfesor: null,
             legajoAlumno: null,
             nroComision: null,
@@ -191,7 +209,7 @@ return (
     }
     {/* Formulario de alta/modificacion/consulta */}
     { AccionABMC !== "L" && (<MateriasRegistro
-            {...{ AccionABMC, Item, Grabar, Volver }}
+            {...{ AccionABMC, Profesores, Alumnos, Comisiones, Item, Grabar, Volver }}
         />
         )}
     </div>

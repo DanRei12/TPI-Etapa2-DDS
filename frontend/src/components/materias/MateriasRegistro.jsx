@@ -25,6 +25,7 @@ export default function MateriasRegistro({
 
         <fieldset disabled={AccionABMC === "C"}>
 
+        {/*
           {/* campo Número Materia */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
@@ -50,7 +51,7 @@ export default function MateriasRegistro({
           </div>
           
           {/* campo Legajo Profesor */}
-
+          {/*
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Stock">
@@ -71,8 +72,8 @@ export default function MateriasRegistro({
               <div className="invalid-feedback">{errors?.legajoProfesor?.message}</div>
             </div>
           </div>
-
-          {/* 
+              */}
+          
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoProfesor">
@@ -99,9 +100,10 @@ export default function MateriasRegistro({
 
             </div>
           </div>
-                */}
+                
           {/* campo Legajo Alumno */}
 
+          {/*
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Stock">
@@ -122,7 +124,8 @@ export default function MateriasRegistro({
               <div className="invalid-feedback">{errors?.legajoAlumno?.message}</div>
             </div>
           </div>
-          {/*
+              */}
+          
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoAlumno">
@@ -148,9 +151,10 @@ export default function MateriasRegistro({
               </div>
             </div>
           </div>
-                */}
+                
           {/* campo Número Comisión */}
 
+          {/*
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Stock">
@@ -171,8 +175,8 @@ export default function MateriasRegistro({
               <div className="invalid-feedback">{errors?.nroComision?.message}</div>
             </div>
           </div>
-
-          {/*
+              */}
+          
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="nroComision">
@@ -198,7 +202,7 @@ export default function MateriasRegistro({
               </div>
             </div>
           </div>
-                */}
+                
           {/* campo Fecha Creacion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
