@@ -38,6 +38,7 @@ export default function MateriasRegistro({
                 {...register("nroMateria", { 
                     required: {value: true, message: "Numero de Materia es requerido" },
                 })}
+                autoFocus
                 className={"form-control" + (errors?.nroMateria ? "is-invalid" : " ")}
               />
               {errors?.nroMateria && touchedFields.nroMateria && (

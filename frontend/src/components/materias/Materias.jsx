@@ -81,7 +81,7 @@ function Materias() {
       function Agregar() {
         setAccionABMC("A");
         setItem({
-            nroMateria: 0,
+            nroMateria: null,
             legajoProfesor: null,
             legajoAlumno: null,
             nroComision: null,
