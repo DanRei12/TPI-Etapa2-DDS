@@ -31,6 +31,11 @@ function Menu() {
                 Materias
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/examenes">
+                Examenes
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -2,6 +2,7 @@ import './App.css';
 import {Menu} from './components/Menu';
 import { Inicio } from './components/Inicio';
 import { Materias } from './components/materias/Materias'
+import { Examenes } from "./components/examenes/Examenes";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ModalDialog from "./components/ModalDialog";
 
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/inicio" element={<Inicio />} />
               <Route path="/materias" element={<Materias />} />
+              <Route path="/examenes" element={<Examenes />} />
 
 
               <Route path="*" element={<Navigate to="/inicio" replace />} />
