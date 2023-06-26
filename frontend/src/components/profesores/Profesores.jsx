@@ -82,7 +82,7 @@ function Profesores() {
     setItem({
         legajoProfesor: 0,
         nombre: null,
-        apellido: moment(new Date()).format("YYYY-MM-DD"),
+        apellido: null,
         descripcion: null,
     });
   }
