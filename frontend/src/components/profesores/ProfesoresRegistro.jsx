@@ -89,7 +89,7 @@ export default function ProfesoresRegistro({
           {/* campo nombre */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Nombre">
+              <label className="col-form-label" htmlFor="nombre">
                 Nombre<span className="text-danger">*</span>:
               </label>
             </div>
@@ -109,12 +109,12 @@ export default function ProfesoresRegistro({
                 })}
                 autoFocus
                 className={
-                  "form-control " + (errors?.Nombre ? "is-invalid" : "")
+                  "form-control " + (errors?.nombre ? "is-invalid" : "")
                 }
               />
-              {errors?.Nombre && touchedFields.Nombre && (
+              {errors?.nombre && touchedFields.Nombre && (
                 <div className="invalid-feedback">
-                  {errors?.Nombre?.message}
+                  {errors?.nombre?.message}
                 </div>
               )}
             </div>
@@ -123,7 +123,7 @@ export default function ProfesoresRegistro({
           {/* campo apellido */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Apellido">
+              <label className="col-form-label" htmlFor="apellido">
                 Apellido<span className="text-danger">*</span>:
               </label>
             </div>
@@ -143,12 +143,12 @@ export default function ProfesoresRegistro({
                 })}
                 autoFocus
                 className={
-                  "form-control " + (errors?.Apellido ? "is-invalid" : "")
+                  "form-control " + (errors?.apellido ? "is-invalid" : "")
                 }
               />
-              {errors?.Apellido && touchedFields.Apellido && (
+              {errors?.apellido && touchedFields.apellido && (
                 <div className="invalid-feedback">
-                  {errors?.Apellido?.message}
+                  {errors?.apellido?.message}
                 </div>
               )}
             </div>

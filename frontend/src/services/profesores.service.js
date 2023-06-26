@@ -19,11 +19,14 @@ async function Eliminar(item) {
 }
 
 async function Grabar(item) {
-  if (item.legajoProfesor === 0) {
-    await axios.post(urlResource, item);
-  } else {
-    await axios.put(urlResource + "/" + item.legajoProfesor, item);
-  }
+  const resp = await axios.get(urlResource + "/" + item.legajoProfesor);
+  const existeRegistro = resp.data;
+
+    if (!existeRegistro) {
+      await axios.post(urlResource, item);
+    } else {
+      await axios.put(urlResource + "/" + item.legajoProfesor, item);
+    }
 }
 
 export const profesoresService = {
