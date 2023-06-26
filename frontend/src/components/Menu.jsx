@@ -27,18 +27,13 @@ function Menu() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/profesores">
-                Profesores
-              </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/alumnos">
                 Alumnos
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/comisiones">
-                Comisiones
+              <NavLink className="nav-link" to="/materias">
+                Materias
               </NavLink>
             </li>
             <li className="nav-item">
@@ -47,8 +42,8 @@ function Menu() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/materias">
-                Materias
+              <NavLink className="nav-link" to="/profesores">
+                Profesores
               </NavLink>
             </li>
           </ul>
