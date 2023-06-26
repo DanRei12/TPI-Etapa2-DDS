@@ -10,7 +10,7 @@ async function Buscar(apellido) {
   return resp.data;
 }
 
-async function BuscarPorLegajo(item) {
+async function BuscarPorlegajoAlumno(item) {
   const resp = await axios.get(urlResource + "/" + item.legajoAlumno);
   return resp.data;
 }
@@ -31,6 +31,6 @@ async function Grabar(item) {
   }
   
   export const alumnosService = {
-    Buscar,BuscarPorLegajo, Eliminar, Grabar
+    Buscar,BuscarPorlegajoAlumno, Eliminar, Grabar
   };
 

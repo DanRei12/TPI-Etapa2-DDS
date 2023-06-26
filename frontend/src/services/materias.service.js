@@ -20,10 +20,7 @@ async function ActivarDesactivar(item) {
 }
 
 async function Grabar(item) {
-  const resp = await axios.get(urlResource + "/" + item.nroMateria);
-  const existeRegistro = resp.data;
-
-    if (!existeRegistro) {
+    if (item.nroMateria === 0) {
       await axios.post(urlResource, item);
     } else {
       await axios.put(urlResource + "/" + item.nroMateria, item);

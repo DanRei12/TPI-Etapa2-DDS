@@ -7,14 +7,15 @@ export default function AlumnosRegistro({
   Grabar,
   Volver,
 }) {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, touchedFields, isValid, isSubmitted },
-      } = useForm({ values: Item });
-    const onSubmit = (data) => {
-        Grabar(data);
-    };    
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields, isValid, isSubmitted },
+  } = useForm({ values: Item });
+
+  const onSubmit = (data) => {
+    Grabar(data);
+  };    
   if (!Item) return null;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -22,8 +23,7 @@ export default function AlumnosRegistro({
 
         <fieldset disabled={AccionABMC === "C"}>
 
-        {/*
-          {/* campo Legajo Alumno */}
+           {/* campo Legajo Alumno */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoAlumno">
@@ -33,10 +33,13 @@ export default function AlumnosRegistro({
             <div className="col-sm-8 col-md-6">
               <input
                 type="number"
+                id="legajoAlumno"
+                name="legajoAlumno"
                 {...register("legajoAlumno", { 
                     required: {value: true, message: "Legajo Alumno es requerido" },
+                    minLength: {value: 1, message: "Legajo Alumno debe tener al menos 1 caracter"},
+                    maxLength: {value: 10, message: "Legajo Alumno debe tener menos de 10 caracteres"},
                 })}
-                autoFocus
                 className={"form-control" + (errors?.legajoAlumno ? "is-invalid" : " ")}
               />
               {errors?.legajoAlumno && touchedFields.legajoAlumno && (
@@ -46,51 +49,49 @@ export default function AlumnosRegistro({
               )}
             </div>
           </div>
-          
+
           {/* campo nombre */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="nombre">
+              <label className="col-form-label" htmlFor="legajoAlumno">
                 Nombre<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
-              <input
-                type="text"
-                {...register("nombre", {
-                  required: { value: true, message: "Nombre es requerido" },
-                })}
-                autoFocus
-                className={
-                  "form-control " + (errors?.nombre ? "is-invalid" : "")
-                }
-              />
-              <div className="invalid-feedback">{errors?.nombre?.message}</div>
+                <input
+                    type="text"
+                    {...register("nombre", {
+                        required: {value: true, message: "Nombre es requerido"},
+                    })}
+                    className={"form-control" + (errors?.nombre ? "is-invalid" : " ")}
+                />
+                <div className="invalid-feedback">
+                    {errors?.nombre?.message}
+                </div>
             </div>
           </div>
 
-          {/* campo apellido */}
-          <div className="row">
+           {/* campo apellido */}
+           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="apellido">
-              Apellido<span className="text-danger">*</span>:
+              <label className="col-form-label" htmlFor="legajoAlumno">
+                Apellido<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
-              <input
-                type="text"
-                {...register("apellido", {
-                  required: { value: true, message: "Apellido es requerido" },
-                })}
-                autoFocus
-                className={
-                  "form-control " + (errors?.apellido ? "is-invalid" : "")
-                }
-              />
-              <div className="invalid-feedback">{errors?.apellido?.message}</div>
+                <input
+                    type="text"
+                    {...register("apellido", {
+                        required: {value: true, message: "Apellido es requerido"},
+                    })}
+                    className={"form-control" + (errors?.apellido ? "is-invalid" : " ")}
+                />
+                <div className="invalid-feedback">
+                    {errors?.apellido?.message}
+                </div>
             </div>
-          </div>
-                
+          </div>     
+                               
           {/* campo Fecha Inscripcion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
@@ -111,12 +112,12 @@ export default function AlumnosRegistro({
               </div>
             </div>
           </div>
-
-          {/* campo Descripcion Alumno */}
+        
+          {/* campo Descripcion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="descripcion">
-                Descripcion del Alumno<span className="text-danger">*</span>:
+              <label className="col-form-label" htmlFor="legajoAlumno">
+                Descripcion<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">

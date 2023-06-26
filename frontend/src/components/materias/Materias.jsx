@@ -6,9 +6,8 @@ import MateriasRegistro from "./MateriasRegistro";
 import { materiasService } from "../../services/materias.service";
 import moment from "moment";
 import modalDialogService from "../../services/modalDialog.service";
-import { profesoresService } from "../../services/profesores.service";
-import { alumnosService } from '../../services/alumnos.service';
-import { comisionesService } from "../../services/comisiones.service";
+//import { profesoresService } from "../../services/profesores.service";
+
 
 function Materias() {
   const TituloAccionABMC = {
@@ -21,6 +20,7 @@ function Materias() {
   const [AccionABMC, setAccionABMC] = useState("L");
 
   const [Descripcion, setDescripcion] = useState("");
+  const [Activo, setActivo] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -28,35 +28,18 @@ function Materias() {
   //const [Pagina, setPagina] = useState(1);
   //const [Paginas, setPaginas] = useState([]);
 
-  const [Profesores, setProfesores] = useState(null);
-  const [Alumnos, setAlumnos] = useState(null);
-  const [Comisiones, setComisiones] = useState(null);
+  // const [ArticulosFamilias, setArticulosFamilias] = useState(null);
 
   // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
-
+  /*
   useEffect(() => {
     async function BuscarLegajoProfesor() {
         let data = await profesoresService.Buscar();
-        setProfesores(data);
+        setArticulosFamilias(data);
       }
       BuscarLegajoProfesor();
     }, []);
-
-  useEffect(() => {
-    async function BuscarLegajoAlumno() {
-        let data = await alumnosService.Buscar();
-        setAlumnos(data);
-      }
-      BuscarLegajoAlumno();
-    }, []);
-
-    useEffect(() => {
-      async function BuscarComision() {
-        let data = await comisionesService.Buscar();
-        setComisiones(data);
-      }
-      BuscarComision();
-    }, []);
+    */
     async function Buscar() {
       //alert("Buscando...");
       // harcodeamos 2 articulos para probar
@@ -104,6 +87,7 @@ function Materias() {
             nroComision: null,
             fechaCreacion: moment(new Date()).format("YYYY-MM-DD"),
             descripcion: null,
+            activo: true,
           });
       
       }
@@ -124,7 +108,9 @@ function Materias() {
       // }
   
       modalDialogService.Confirm(
-        "Esta seguro que quiere eliminar el registro?",
+        "Esta seguro que quiere " +
+          (item.Activo ? "desactivar" : "activar") +
+          " el registro?",
         undefined,
         undefined,
         undefined,
@@ -176,6 +162,8 @@ return (
     { AccionABMC === "L" && <MateriasBuscar
     Descripcion={Descripcion}
     setDescripcion={setDescripcion}
+    Activo={Activo}
+    setActivo={setActivo} 
     Buscar={Buscar}
     Agregar={Agregar}
     />
@@ -188,6 +176,10 @@ return (
         Consultar,
         Modificar,
         ActivarDesactivar,
+        /*Imprimir,
+        Pagina,
+        RegistrosTotal,
+        Paginas,*/
         Buscar,
     }}
     />
@@ -201,7 +193,7 @@ return (
     }
     {/* Formulario de alta/modificacion/consulta */}
     { AccionABMC !== "L" && (<MateriasRegistro
-            {...{ AccionABMC, Profesores, Alumnos, Comisiones, Item, Grabar, Volver }}
+            {...{ AccionABMC, Item, Grabar, Volver }}
         />
         )}
     </div>

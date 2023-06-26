@@ -22,6 +22,9 @@ function Examenes() {
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
+  const [RegistrosTotal, setRegistrosTotal] = useState(0);
+  const [Pagina, setPagina] = useState(1);
+  const [Paginas, setPaginas] = useState([]);
 
   const [Materias, setMaterias] = useState(null);
   const [Alumnos, setAlumnos] = useState(null);
@@ -52,9 +55,28 @@ function Examenes() {
     };
   }, []);
 
-  async function Buscar() {
-    const data = await examenesService.Buscar(descripcion);
+  async function Buscar(_pagina) {
+    if (_pagina && _pagina !== Pagina) {
+      setPagina(_pagina);
+    }
+    // OJO Pagina (y cualquier estado...) se actualiza para el proximo render, para buscar usamos el parametro _pagina
+    else {
+      _pagina = Pagina;
+    }
+    /*     modalDialogService.BloquearPantalla(true);
+     */ const data = await examenesService.Buscar(descripcion, _pagina);
     setItems(data.Items);
+
+    console.log("Items: ", data.Items);
+
+    setRegistrosTotal(data.RegistrosTotal);
+
+    //generar array de las paginas para mostrar en select del paginador
+    const arrPaginas = [];
+    for (let i = 1; i <= Math.ceil(data.RegistrosTotal / 10); i++) {
+      arrPaginas.push(i);
+    }
+    setPaginas(arrPaginas);
   }
 
   async function BuscarPorNroMateria(item, accionABMC) {
@@ -78,6 +100,10 @@ function Examenes() {
       fechaExamen: moment(new Date()).format("YYYY-MM-DD"),
       descripcion: null,
     });
+  }
+
+  function Imprimir() {
+    modalDialogService.Alert("En desarrollo...");
   }
 
   async function Eliminar(item) {
@@ -176,6 +202,10 @@ function Examenes() {
             Consultar,
             Modificar,
             Eliminar,
+            Imprimir,
+            Pagina,
+            RegistrosTotal,
+            Paginas,
             Buscar,
           }}
         />

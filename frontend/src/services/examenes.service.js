@@ -2,9 +2,9 @@ import axios from "axios";
 
 const urlResource = "http://localhost:4000/api/examenes";
 
-async function Buscar(descripcion) {
+async function Buscar(descripcion, Pagina) {
   const resp = await axios.get(urlResource, {
-    params: { descripcion},
+    params: { descripcion, Pagina },
   });
   return resp.data;
 }

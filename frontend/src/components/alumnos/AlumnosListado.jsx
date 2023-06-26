@@ -6,6 +6,11 @@ export default function AlumnosListado({
   Consultar,
   Modificar,
   Eliminar,
+  /*
+  Imprimir,
+  Pagina,
+  RegistrosTotal,
+  Paginas, */
   Buscar,
 
 }) {
@@ -14,10 +19,10 @@ export default function AlumnosListado({
           <table className="table table-hover table-sm table-bordered table-striped">
             <thead>
               <tr>
-                <th className="text-center">LegajoAlumno</th>
-                <th className="text-center">Apellido</th>
-                <th className="text-center">Nombre</th>
-                <th className="text-center">FechaInscripción</th>
+                <th className="text-center">Lejago Alumno</th>
+                <th className="text-center">nombre</th>
+                <th className="text-center">apellido</th>
+                <th className="text-center">Fecha de Inscripcion</th>
                 <th className="text-center">Descripción</th>
                 <th className="text-center text-nowrap">Acciones</th>
               </tr>
@@ -27,8 +32,8 @@ export default function AlumnosListado({
                 Items.map((Item) => (
                   <tr key={Item.legajoAlumno}>
                     <td className="text-center">{Item.legajoAlumno}</td>
-                    <td className="text-center">{Item.apellido}</td>
                     <td className="text-center">{Item.nombre}</td>
+                    <td className="text-center">{Item.apellido}</td>
                     <td className="text-center">{moment(Item.fechaInscripcion).format("DD/MM/YYYY")}</td>
                     <td className="text-center">{Item.descripcion}</td>
                     <td className="text-center text-nowrap">
@@ -48,12 +53,12 @@ export default function AlumnosListado({
                             <i className="fa fa-pencil"></i>
                         </button>
                         <button
-                          className={
+                           className={
                             "btn btn-sm btn-outline-danger"
-                          }
-                          title={"Eliminar"}
-                          onClick={() => Eliminar(Item)}
-                        >
+                            }
+                            title={"Eliminar"}
+                            onClick={() => Eliminar(Item)}
+                        > 
                         </button>
                     </td>
                   </tr>

@@ -1,10 +1,11 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
+//import moment from "moment";
 import AlumnosBuscar from "./AlumnosBuscar";
 import AlumnosListado from "./AlumnosListado";
 import AlumnosRegistro from "./AlumnosRegistro";
+import { alumnosService } from "../../services/alumnos.service";
 import moment from "moment";
 import modalDialogService from "../../services/modalDialog.service";
-import { alumnosService } from '../../services/alumnos.service';
 
 function Alumnos() {
   const TituloAccionABMC = {
@@ -17,28 +18,30 @@ function Alumnos() {
   const [AccionABMC, setAccionABMC] = useState("L");
 
   const [apellido, setApellido] = useState("");
+  const [Activo, setActivo] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
-
+  
     async function Buscar() {
+      
       const data = await alumnosService.Buscar(apellido);
-      setItems(data);
-      console.log("Items: ", data);
+      setItems(data.Items);
+      console.log("Items: ", data.Items);
     }
 
-    async function BuscarPorLegajo(item, accionABMC) {
-        const data = await alumnosService.BuscarPorLegajo(item);
+    async function BuscarPorlegajoAlumno(item, accionABMC) {
+        const data = await alumnosService.BuscarPorlegajoAlumno(item);
         setAccionABMC(accionABMC);
         setItem(data);
       }
     
       function Consultar(item) {
-        BuscarPorLegajo(item, "C"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
+        BuscarPorlegajoAlumno(item, "C"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
       }
 
       function Modificar(item) {
-        BuscarPorLegajo(item, "M"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
+        BuscarPorlegajoAlumno(item, "M"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
       }
     
     
@@ -50,11 +53,30 @@ function Alumnos() {
             apellido: null,
             fechaInscripcion: moment(new Date()).format("YYYY-MM-DD"),
             descripcion: null,
+            activo: true,
           });
       
       }
 
-    async function Eliminar(item) {
+      async function Eliminar(item) {
+
+        modalDialogService.Confirm(
+          "Esta seguro que quiere eliminar el registro?",
+          undefined,
+          undefined,
+          undefined,
+          async () => {
+            await alumnosService.Eliminar(item);
+            await Buscar();
+          }
+        );
+      }
+    /*
+      function Imprimir() {
+        alert("En desarrollo...");
+        }
+      */
+    async function ActivarDesactivar(item) {
       // const resp = window.confirm(
       //   "Esta seguro que quiere " +
       //     (item.Activo ? "desactivar" : "activar") +
@@ -71,11 +93,12 @@ function Alumnos() {
         undefined,
         undefined,
         async () => {
-          await alumnosService.Eliminar(item);
+          await alumnosService.ActivarDesactivar(item);
           await Buscar();
         }
       );
     }
+
       
     async function Grabar(item) {
       // agregar o modificar
@@ -118,6 +141,8 @@ return (
     { AccionABMC === "L" && <AlumnosBuscar
     apellido={apellido}
     setApellido={setApellido}
+    Activo={Activo}
+    setActivo={setActivo} 
     Buscar={Buscar}
     Agregar={Agregar}
     />
@@ -129,7 +154,12 @@ return (
         Items,
         Consultar,
         Modificar,
+        ActivarDesactivar,
         Eliminar,
+        /*Imprimir,
+        Pagina,
+        RegistrosTotal,
+        Paginas,*/
         Buscar,
     }}
     />

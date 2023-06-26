@@ -1,67 +1,81 @@
 import React from "react";
+import moment from "moment";
 
 export default function ProfesoresListado({
   Items,
   Consultar,
   Modificar,
   Eliminar,
+  Imprimir,
+  Pagina,
+  RegistrosTotal,
+  Paginas,
   Buscar,
-
 }) {
-    return (
-        <div className="table-responsive">
-          <table className="table table-hover table-sm table-bordered table-striped">
-            <thead>
-              <tr>
-                <th className="text-center">LegajoProfesor</th>
-                <th className="text-center">Apellido</th>
-                <th className="text-center">Nombre</th>
-                <th className="text-center">Descripción</th>
-                <th className="text-center text-nowrap">Acciones</th>
+  // mejorar performance
+  //console.log("render ArticulosListado", [Items]); //para ver cuando se renderiza y luego mejoramos con el  hoock useMemo
+
+
+  return (
+    <div className="table-responsive">
+      <table className="table table-hover table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th className="text-center">Descripcion</th>
+            <th className="text-center">LegajoProfesor</th>
+            <th className="text-center">Nombre</th>
+            <th className="text-center">Apellido</th>
+            <th className="text-center text-nowrap">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Items &&
+            Items.map((Item) => (
+              <tr key={Item.legajoProfesor}>
+                <td>{Item.descripcion}</td>
+                <td className="text-end">{Item.legajoProfesor}</td>
+                <td className="text-end">{Item.Nombre}</td>
+                <td className="text-end">{Item.Apellido}</td>
+                <td className="text-center text-nowrap">
+                  <button
+                    className="btn btn-sm btn-outline-primary"
+                    title="Consultar"
+                    onClick={() => Consultar(Item)}
+                  >
+                    <i className="fa fa-eye"></i>
+                  </button>
+                  <button
+                    className="btn btn-sm btn-outline-primary"
+                    title="Modificar"
+                    onClick={() => Modificar(Item)}
+                  >
+                    <i className="fa fa-pencil"></i>
+                  </button>
+                  <button
+                    className={
+                      "btn btn-sm btn-outline-danger"
+                    }
+                    title={"Eliminar"}
+                    onClick={() => Eliminar(Item)}
+                  >
+                    {/* <i
+                      className={"fa fa-" + (Item.Activo ? "times" : "check")}
+                    ></i> */}
+                  </button>
+
+                
+
+
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {Items &&
-                Items.map((Item) => (
-                  <tr key={Item.legajoProfesor}>
-                    <td className="text-center">{Item.legajoProfesor}</td>
-                    <td className="text-center">{Item.apellido}</td>
-                    <td className="text-center">{Item.nombre}</td>
-                    <td className="text-center">{Item.descripcion}</td>
-                    <td className="text-center text-nowrap">
-                        
-                        <button
-                            className="btn btn-sm btn-outline-primary"
-                            title="Consultar"
-                            onClick={() => Consultar(Item)}
-                        >
-                            <i className="fa fa-eye"></i>
-                        </button>
-                        <button
-                            className="btn btn-sm btn-outline-primary"
-                            title="Modificar"
-                            onClick={() => Modificar(Item)}
-                        >
-                            <i className="fa fa-pencil"></i>
-                        </button>
-                        <button
-                          className={
-                            "btn btn-sm btn-outline-danger"
-                          }
-                          title={"Eliminar"}
-                          onClick={() => Eliminar(Item)}
-                        >
-                        </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+            ))}
+        </tbody>
+      </table>
 
       {/* Paginador*/}
-      {/* <div className="paginador">
+      <div className="paginador">
         <div className="row">
-        <div className="col">
+          <div className="col">
             <span className="pyBadge">Registros: {RegistrosTotal}</span>
           </div>
           <div className="col text-center">
@@ -87,8 +101,7 @@ export default function ProfesoresListado({
             </button>
           </div>
         </div>
-        </div> */}
-        </div>
+      </div>
+    </div>
   );
 }
-    

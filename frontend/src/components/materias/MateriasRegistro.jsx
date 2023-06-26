@@ -25,7 +25,6 @@ export default function MateriasRegistro({
 
         <fieldset disabled={AccionABMC === "C"}>
 
-        {/*
           {/* campo Número Materia */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
@@ -36,10 +35,13 @@ export default function MateriasRegistro({
             <div className="col-sm-8 col-md-6">
               <input
                 type="number"
+                id="nroMateria"
+                name="nroMateria"
                 {...register("nroMateria", { 
                     required: {value: true, message: "Numero de Materia es requerido" },
+                    minLength: {value: 1, message: "Numero de Materia debe tener al menos 1 caracter"},
+                    maxLength: {value: 10, message: "Numero de Materia debe tener menos de 10 caracteres"},
                 })}
-                autoFocus
                 className={"form-control" + (errors?.nroMateria ? "is-invalid" : " ")}
               />
               {errors?.nroMateria && touchedFields.nroMateria && (
@@ -51,7 +53,7 @@ export default function MateriasRegistro({
           </div>
           
           {/* campo Legajo Profesor */}
-          {/*
+
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Stock">
@@ -72,8 +74,8 @@ export default function MateriasRegistro({
               <div className="invalid-feedback">{errors?.legajoProfesor?.message}</div>
             </div>
           </div>
-              */}
-          
+
+          {/* 
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoProfesor">
@@ -100,32 +102,8 @@ export default function MateriasRegistro({
 
             </div>
           </div>
-                
+                */}
           {/* campo Legajo Alumno */}
-
-          {/*
-          <div className="row">
-            <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Stock">
-                Legajo Alumno<span className="text-danger">*</span>:
-              </label>
-            </div>
-            <div className="col-sm-8 col-md-6">
-              <input
-                type="number"
-                {...register("legajoAlumno", {
-                  required: { value: true, message: "Legajo Alumno es requerido" },
-                })}
-                autoFocus
-                className={
-                  "form-control " + (errors?.legajoAlumno ? "is-invalid" : "")
-                }
-              />
-              <div className="invalid-feedback">{errors?.legajoAlumno?.message}</div>
-            </div>
-          </div>
-              */}
-          
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoAlumno">
@@ -151,32 +129,8 @@ export default function MateriasRegistro({
               </div>
             </div>
           </div>
-                
-          {/* campo Número Comisión */}
 
-          {/*
-          <div className="row">
-            <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Stock">
-                Numero Comision<span className="text-danger">*</span>:
-              </label>
-            </div>
-            <div className="col-sm-8 col-md-6">
-              <input
-                type="number"
-                {...register("nroComision", {
-                  required: { value: true, message: "Numero Comision es requerido" },
-                })}
-                autoFocus
-                className={
-                  "form-control " + (errors?.nroComision ? "is-invalid" : "")
-                }
-              />
-              <div className="invalid-feedback">{errors?.nroComision?.message}</div>
-            </div>
-          </div>
-              */}
-          
+          {/* campo Número Comisión */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="nroComision">
@@ -202,7 +156,7 @@ export default function MateriasRegistro({
               </div>
             </div>
           </div>
-                
+
           {/* campo Fecha Creacion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">

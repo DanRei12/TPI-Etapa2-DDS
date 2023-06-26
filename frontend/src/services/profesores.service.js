@@ -1,16 +1,15 @@
 import axios from "axios";
 
-
 const urlResource = "http://localhost:4000/api/profesores";
 
-async function Buscar(apellido) {
+async function Buscar(descripcion, Pagina) {
   const resp = await axios.get(urlResource, {
-    params: { apellido },
+    params: { descripcion, Pagina },
   });
   return resp.data;
 }
 
-async function BuscarPorLegajo(item) {
+async function BuscarPorLegajoProfesor(item) {
   const resp = await axios.get(urlResource + "/" + item.legajoProfesor);
   return resp.data;
 }
@@ -29,8 +28,7 @@ async function Grabar(item) {
       await axios.put(urlResource + "/" + item.legajoProfesor, item);
     }
   }
-  
-  export const profesoresService = {
-    Buscar,BuscarPorLegajo, Eliminar, Grabar
-  };
 
+export const profesoresService = {
+  Buscar,BuscarPorLegajoProfesor,Eliminar,Grabar
+};
