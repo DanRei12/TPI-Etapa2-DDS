@@ -34,8 +34,8 @@ export default function ProfesoresListado({
               <tr key={Item.legajoProfesor}>
                 <td>{Item.descripcion}</td>
                 <td className="text-end">{Item.legajoProfesor}</td>
-                <td className="text-end">{Item.Nombre}</td>
-                <td className="text-end">{Item.Apellido}</td>
+                <td className="text-end">{Item.nombre}</td>
+                <td className="text-end">{Item.apellido}</td>
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"
