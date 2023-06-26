@@ -163,7 +163,7 @@ function Profesores() {
         />
       )}
 
-      {/* Tabla de resutados de busqueda y Paginador */}
+      {/* Tabla de resultados de busqueda y Paginador */}
       {AccionABMC === "L" && Items?.length > 0 && (
         <ProfesoresListado
           {...{
