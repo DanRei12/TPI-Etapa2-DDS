@@ -6,61 +6,65 @@ export default function ComisionesListado({
   Consultar,
   Modificar,
   Eliminar,
+  Pagina,
+  RegistrosTotal,
+  Paginas,
   Buscar,
-
 }) {
-    return (
-        <div className="table-responsive">
-          <table className="table table-hover table-sm table-bordered table-striped">
-            <thead>
-              <tr>
-                <th className="text-center">NroComision</th>
-                <th className="text-center">FechaInscripción</th>
-                <th className="text-center">Descripción</th>
-                <th className="text-center text-nowrap">Acciones</th>
+  return (
+    <div className="table-responsive">
+      <table className="table table-hover table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            {/*Se establecen los campos del listado*/}
+            <th className="text-center">NroComision</th>
+            <th className="text-center">FechaInscripción</th>
+            <th className="text-center">Descripción</th>
+            <th className="text-center text-nowrap">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/*Asignación de valores para cada campo */}
+          {Items &&
+            Items.map((Item) => (
+              <tr key={Item.nroComision}>
+                <td className="text-center">{Item.nroComision}</td>
+                <td className="text-center">
+                  {moment(Item.fechaCreacion).format("DD/MM/YYYY")}
+                </td>
+                <td className="text-center">{Item.descripcion}</td>
+                <td className="text-center text-nowrap">
+                  <button
+                    className="btn btn-sm btn-outline-primary"
+                    title="Consultar"
+                    onClick={() => Consultar(Item)}
+                  >
+                    <i className="fa fa-eye"></i>
+                  </button>
+                  <button
+                    className="btn btn-sm btn-outline-primary"
+                    title="Modificar"
+                    onClick={() => Modificar(Item)}
+                  >
+                    <i className="fa fa-pencil"></i>
+                  </button>
+                  <button
+                    className={"btn btn-sm btn-outline-danger"}
+                    title={"Eliminar"}
+                    onClick={() => Eliminar(Item)}
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {Items &&
-                Items.map((Item) => (
-                  <tr key={Item.nroComision}>
-                    <td className="text-center">{Item.nroComision}</td>
-                    <td className="text-center">{moment(Item.fechaCreacion).format("DD/MM/YYYY")}</td>
-                    <td className="text-center">{Item.descripcion}</td>
-                    <td className="text-center text-nowrap">
-                        
-                        <button
-                            className="btn btn-sm btn-outline-primary"
-                            title="Consultar"
-                            onClick={() => Consultar(Item)}
-                        >
-                            <i className="fa fa-eye"></i>
-                        </button>
-                        <button
-                            className="btn btn-sm btn-outline-primary"
-                            title="Modificar"
-                            onClick={() => Modificar(Item)}
-                        >
-                            <i className="fa fa-pencil"></i>
-                        </button>
-                        <button
-                          className={
-                            "btn btn-sm btn-outline-danger"
-                          }
-                          title={"Eliminar"}
-                          onClick={() => Eliminar(Item)}
-                        >
-                        </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+            ))}
+        </tbody>
+      </table>
 
       {/* Paginador*/}
-      {/* <div className="paginador">
+      <div className="paginador">
         <div className="row">
-        <div className="col">
+          <div className="col">
             <span className="pyBadge">Registros: {RegistrosTotal}</span>
           </div>
           <div className="col text-center">
@@ -79,15 +83,8 @@ export default function ComisionesListado({
             </select>
             &nbsp; de {Paginas?.length}
           </div>
-
-          <div className="col">
-            <button className="btn btn-primary float-end" onClick={() => Imprimir()}>
-              <i className="fa fa-print"></i>Imprimir
-            </button>
-          </div>
         </div>
-        </div> */}
-        </div>
+      </div>
+    </div>
   );
 }
-    

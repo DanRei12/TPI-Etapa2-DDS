@@ -6,21 +6,17 @@ export default function ExamenesListado({
   Consultar,
   Modificar,
   Eliminar,
-  Imprimir,
   Pagina,
   RegistrosTotal,
   Paginas,
   Buscar,
 }) {
-  // mejorar performance
-  //console.log("render ArticulosListado", [Items]); //para ver cuando se renderiza y luego mejoramos con el  hoock useMemo
-
-
   return (
     <div className="table-responsive">
       <table className="table table-hover table-sm table-bordered table-striped">
         <thead>
           <tr>
+            {/*Se establecen los campos del listado*/}
             <th className="text-center">Descripcion</th>
             <th className="text-center">NroMateria</th>
             <th className="text-center">LegajoAlumno</th>
@@ -29,6 +25,7 @@ export default function ExamenesListado({
           </tr>
         </thead>
         <tbody>
+          {/*Asignación de valores para cada campo */}
           {Items &&
             Items.map((Item) => (
               <tr key={Item.nroMateria}>
@@ -38,7 +35,6 @@ export default function ExamenesListado({
                 <td className="text-end">
                   {moment(Item.fechaExamen).format("DD/MM/YYYY")}
                 </td>
-                {/* <td>{Item.Activo ? "SI" : "NO"}</td> */}
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"
@@ -55,20 +51,12 @@ export default function ExamenesListado({
                     <i className="fa fa-pencil"></i>
                   </button>
                   <button
-                    className={
-                      "btn btn-sm btn-outline-danger"
-                    }
+                    className={"btn btn-sm btn-outline-danger"}
                     title={"Eliminar"}
                     onClick={() => Eliminar(Item)}
                   >
-                    {/* <i
-                      className={"fa fa-" + (Item.Activo ? "times" : "check")}
-                    ></i> */}
+                    <i className="fa fa-trash"></i>
                   </button>
-
-                
-
-
                 </td>
               </tr>
             ))}
@@ -96,12 +84,6 @@ export default function ExamenesListado({
               ))}
             </select>
             &nbsp; de {Paginas?.length}
-          </div>
-
-          <div className="col">
-            <button className="btn btn-primary float-end" onClick={() => Imprimir()}>
-              <i className="fa fa-print"></i>Imprimir
-            </button>
           </div>
         </div>
       </div>

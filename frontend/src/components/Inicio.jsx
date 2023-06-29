@@ -1,5 +1,6 @@
 import React from "react";
 
+//Pagina de inicio
 function Inicio() {
   return (
     <div className="container">

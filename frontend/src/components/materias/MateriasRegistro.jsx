@@ -10,21 +10,24 @@ export default function MateriasRegistro({
   Grabar,
   Volver,
 }) {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, touchedFields, isValid, isSubmitted },
-      } = useForm({ values: Item });
-    const onSubmit = (data) => {
-        Grabar(data);
-    };    
+  //Se inicializa funciones para la gestión de los datos del form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields, isValid, isSubmitted },
+  } = useForm({ values: Item });
+  const onSubmit = (data) => {
+    Grabar(data);
+  };
   if (!Item) return null;
   return (
+    //Se envia cuando los datos hayan sido validados correctamente
     <form onSubmit={handleSubmit(onSubmit)}>
+      {/*Se lleva a cabo la introducción de los campos del registro */}
       <div className="container-fluid">
-
-        <fieldset disabled={AccionABMC === "C"}>
-
+        {/*Habilita el campo solo para el caso de agregar un nuevo registro */}
+        <fieldset disabled={AccionABMC != "A"}>
+          {/*
           {/* campo Número Materia */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
@@ -35,47 +38,28 @@ export default function MateriasRegistro({
             <div className="col-sm-8 col-md-6">
               <input
                 type="number"
-                id="nroMateria"
-                name="nroMateria"
-                {...register("nroMateria", { 
-                    required: {value: true, message: "Numero de Materia es requerido" },
-                    minLength: {value: 1, message: "Numero de Materia debe tener al menos 1 caracter"},
-                    maxLength: {value: 10, message: "Numero de Materia debe tener menos de 10 caracteres"},
+                {...register("nroMateria", {
+                  required: {
+                    value: true,
+                    message: "Numero de Materia es requerido",
+                  },
                 })}
-                className={"form-control" + (errors?.nroMateria ? "is-invalid" : " ")}
+                autoFocus
+                className={
+                  "form-control" + (errors?.nroMateria ? "is-invalid" : " ")
+                }
               />
               {errors?.nroMateria && touchedFields.nroMateria && (
                 <div className="invalid-feedback">
-                    {errors?.nroMateria?.message}
+                  {errors?.nroMateria?.message}
                 </div>
               )}
             </div>
           </div>
-          
-          {/* campo Legajo Profesor */}
+        </fieldset>
 
-          <div className="row">
-            <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Stock">
-                Legajo Profesor<span className="text-danger">*</span>:
-              </label>
-            </div>
-            <div className="col-sm-8 col-md-6">
-              <input
-                type="number"
-                {...register("legajoProfesor", {
-                  required: { value: true, message: "Legajo Profesor es requerido" },
-                })}
-                autoFocus
-                className={
-                  "form-control " + (errors?.legajoProfesor ? "is-invalid" : "")
-                }
-              />
-              <div className="invalid-feedback">{errors?.legajoProfesor?.message}</div>
-            </div>
-          </div>
-
-          {/* 
+        {/*Desactiva los campos en caso de que este en opción de consulta*/}
+        <fieldset disabled={AccionABMC === "C"}>
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoProfesor">
@@ -83,11 +67,16 @@ export default function MateriasRegistro({
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
-            <select
+              <select
                 {...register("legajoProfesor", {
-                    required: {value: true, message: "Legajo Profesor es requerido"},
+                  required: {
+                    value: true,
+                    message: "Legajo Profesor es requerido",
+                  },
                 })}
-                className={"form-control" + (errors?.legajoProfesor ? "is-invalid" : " ")}
+                className={
+                  "form-control" + (errors?.legajoProfesor ? "is-invalid" : " ")
+                }
               >
                 <option value="" key={1}></option>
                 {Profesores?.map((x) => (
@@ -99,11 +88,9 @@ export default function MateriasRegistro({
               <div className="invalid-feedback">
                 {errors?.legajoProfesor?.message}
               </div>
-
             </div>
           </div>
-                */}
-          {/* campo Legajo Alumno */}
+
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="legajoAlumno">
@@ -113,9 +100,14 @@ export default function MateriasRegistro({
             <div className="col-sm-8 col-md-6">
               <select
                 {...register("legajoAlumno", {
-                    required: {value: true, message: "Legajo Alumno es requerido"},
+                  required: {
+                    value: true,
+                    message: "Legajo Alumno es requerido",
+                  },
                 })}
-                className={"form-control" + (errors?.legajoAlumno ? "is-invalid" : " ")}
+                className={
+                  "form-control" + (errors?.legajoAlumno ? "is-invalid" : " ")
+                }
               >
                 <option value="" key={1}></option>
                 {Alumnos?.map((x) => (
@@ -130,19 +122,23 @@ export default function MateriasRegistro({
             </div>
           </div>
 
-          {/* campo Número Comisión */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="nroComision">
                 Numero Comision<span className="text-danger">*</span>:
               </label>
-              </div>
+            </div>
             <div className="col-sm-8 col-md-6">
               <select
                 {...register("nroComision", {
-                    required: {value: true, message: "Numero Comision es requerido"},
+                  required: {
+                    value: true,
+                    message: "Numero Comision es requerido",
+                  },
                 })}
-                className={"form-control" + (errors?.nroComision ? "is-invalid" : " ")}
+                className={
+                  "form-control" + (errors?.nroComision ? "is-invalid" : " ")
+                }
               >
                 <option value="" key={1}></option>
                 {Comisiones?.map((x) => (
@@ -168,9 +164,14 @@ export default function MateriasRegistro({
               <input
                 type="date"
                 {...register("fechaCreacion", {
-                    required: {value: true, message: "Fecha Creacion es requerido"},
+                  required: {
+                    value: true,
+                    message: "Fecha Creacion es requerido",
+                  },
                 })}
-                className={"form-control" + (errors?.fechaCreacion ? "is-invalid" : " ")}
+                className={
+                  "form-control" + (errors?.fechaCreacion ? "is-invalid" : " ")
+                }
               />
               <div className="invalid-feedback">
                 {errors?.fechaCreacion?.message}
@@ -186,19 +187,23 @@ export default function MateriasRegistro({
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
-                <input
-                    type="text"
-                    {...register("descripcion", {
-                        required: {value: true, message: "Descripcion es requerido"},
-                    })}
-                    className={"form-control" + (errors?.descripcion ? "is-invalid" : " ")}
-                />
-                <div className="invalid-feedback">
-                    {errors?.descripcion?.message}
-                </div>
+              <input
+                type="text"
+                {...register("descripcion", {
+                  required: {
+                    value: true,
+                    message: "Descripcion es requerido",
+                  },
+                })}
+                className={
+                  "form-control" + (errors?.descripcion ? "is-invalid" : " ")
+                }
+              />
+              <div className="invalid-feedback">
+                {errors?.descripcion?.message}
+              </div>
             </div>
           </div>
-
         </fieldset>
 
         {/* Botones Grabar, Cancelar/Volver' */}
@@ -222,13 +227,11 @@ export default function MateriasRegistro({
         </div>
         {/* texto: Revisar los datos ingresados... */}
         {!isValid && isSubmitted && (
-            <div className="row alert alert-danger mensajesAlert">
-                <i className="fa fa-exclamation-sign"></i>
-                Revisar los datos ingresados...
-            </div>
+          <div className="row alert alert-danger mensajesAlert">
+            <i className="fa fa-exclamation-sign"></i>
+            Revisar los datos ingresados...
+          </div>
         )}
-
-
       </div>
     </form>
   );

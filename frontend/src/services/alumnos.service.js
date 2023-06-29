@@ -1,24 +1,29 @@
+//Este archivo se encarga de encapsular y organizar la lógica relacionada con las solicitudes y operaciones relacionadas con las solicitudes de una tabla.
 import axios from "axios";
 
-
+//Se establece una variable donde se almacena la ruta a usar
 const urlResource = "http://localhost:4000/api/alumnos";
 
-async function Buscar(apellido) {
+//Envía la solicitud get correspondiente al back
+async function Buscar(apellido, Pagina) {
   const resp = await axios.get(urlResource, {
-    params: { apellido },
+    params: { apellido, Pagina },
   });
   return resp.data;
 }
 
-async function BuscarPorlegajoAlumno(item) {
+//Envía la solicitud get por id al back
+async function BuscarPorLegajo(item) {
   const resp = await axios.get(urlResource + "/" + item.legajoAlumno);
   return resp.data;
 }
 
+//Envía la solicitud delete al back
 async function Eliminar(item) {
   await axios.delete(urlResource + "/" + item.legajoAlumno);
 }
 
+//Envía la solicitud post o put, según corresponda, al back
 async function Grabar(item) {
   const resp = await axios.get(urlResource + "/" + item.legajoAlumno);
   const existeRegistro = resp.data;
@@ -31,6 +36,6 @@ async function Grabar(item) {
   }
   
   export const alumnosService = {
-    Buscar,BuscarPorlegajoAlumno, Eliminar, Grabar
+    Buscar,BuscarPorLegajo, Eliminar, Grabar
   };
 

@@ -5,9 +5,6 @@ function Menu() {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md">
       <div className="container-fluid">
-        {/* <a className="navbar-brand" href="#!">
-          <i>Pymes</i>
-        </a> */}
         <button
           className="navbar-toggler"
           type="button"
@@ -21,6 +18,8 @@ function Menu() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
+            
+            {/*Se definen los enlaces del menu de navegación, los cuales se establecen en app.js*/}
             <li className="nav-item">
               <NavLink className="nav-link" to="/inicio">
                 Inicio

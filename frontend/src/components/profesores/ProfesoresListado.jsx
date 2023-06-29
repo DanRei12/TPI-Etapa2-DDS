@@ -1,26 +1,21 @@
 import React from "react";
-import moment from "moment";
 
 export default function ProfesoresListado({
   Items,
   Consultar,
   Modificar,
   Eliminar,
-  Imprimir,
   Pagina,
   RegistrosTotal,
   Paginas,
   Buscar,
 }) {
-  // mejorar performance
-  //console.log("render ArticulosListado", [Items]); //para ver cuando se renderiza y luego mejoramos con el  hoock useMemo
-
-
   return (
     <div className="table-responsive">
       <table className="table table-hover table-sm table-bordered table-striped">
         <thead>
           <tr>
+            {/*Se establecen los campos del listado*/}
             <th className="text-center">Descripcion</th>
             <th className="text-center">LegajoProfesor</th>
             <th className="text-center">Nombre</th>
@@ -29,6 +24,7 @@ export default function ProfesoresListado({
           </tr>
         </thead>
         <tbody>
+          {/*Asignación de valores para cada campo */}
           {Items &&
             Items.map((Item) => (
               <tr key={Item.legajoProfesor}>
@@ -52,20 +48,12 @@ export default function ProfesoresListado({
                     <i className="fa fa-pencil"></i>
                   </button>
                   <button
-                    className={
-                      "btn btn-sm btn-outline-danger"
-                    }
+                    className={"btn btn-sm btn-outline-danger"}
                     title={"Eliminar"}
                     onClick={() => Eliminar(Item)}
                   >
-                    {/* <i
-                      className={"fa fa-" + (Item.Activo ? "times" : "check")}
-                    ></i> */}
+                    <i className="fa fa-trash"></i>
                   </button>
-
-                
-
-
                 </td>
               </tr>
             ))}
@@ -93,12 +81,6 @@ export default function ProfesoresListado({
               ))}
             </select>
             &nbsp; de {Paginas?.length}
-          </div>
-
-          <div className="col">
-            <button className="btn btn-primary float-end" onClick={() => Imprimir()}>
-              <i className="fa fa-print"></i>Imprimir
-            </button>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ export default function ProfesoresRegistro({
   Grabar,
   Volver,
 }) {
+  //Se inicializa funciones para la gestión de los datos del form
   const {
     register,
     handleSubmit,
@@ -18,11 +19,54 @@ export default function ProfesoresRegistro({
   };
   if (!Item) return null;
   return (
+    //Se envia cuando los datos hayan sido validados correctamente
     <form onSubmit={handleSubmit(onSubmit)}>
+      {/*Se lleva a cabo la introducción de los campos del registro */}
       <div className="container-fluid">
+        {/*Habilita el campo solo para el caso de agregar un nuevo registro */}
+        <fieldset disabled={AccionABMC != "A"}>
+          {/* campo Legajo Profesor */}
+          <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="legajoProfesor">
+                Legajo Profesor<span className="text-danger">*</span>:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+              <input
+                type="number"
+                id="legajoProfesor"
+                name="legajoProfesor"
+                {...register("legajoProfesor", {
+                  required: {
+                    value: true,
+                    message: "Legajo Profesor es requerido",
+                  },
+                  minLength: {
+                    value: 1,
+                    message: "Legajo Profesor debe tener al menos 1 caracter",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message:
+                      "Legajo Profesor debe tener menos de 10 caracteres",
+                  },
+                })}
+                className={
+                  "form-control" + (errors?.legajoProfesor ? "is-invalid" : " ")
+                }
+              />
+              {errors?.legajoProfesor && touchedFields.legajoProfesor && (
+                <div className="invalid-feedback">
+                  {errors?.legajoProfesor?.message}
+                </div>
+              )}
+            </div>
+          </div>
+        </fieldset>
 
+        {/*Desactiva los campos en caso de que este en opción de consulta*/}
         <fieldset disabled={AccionABMC === "C"}>
-
           {/* campo descripcion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
@@ -34,7 +78,10 @@ export default function ProfesoresRegistro({
               <input
                 type="text"
                 {...register("descripcion", {
-                  required: { value: true, message: "Descripcion es requerida" },
+                  required: {
+                    value: true,
+                    message: "Descripcion es requerida",
+                  },
                   minLength: {
                     value: 4,
                     message: "Descripcion debe tener al menos 4 caracteres",
@@ -57,46 +104,17 @@ export default function ProfesoresRegistro({
             </div>
           </div>
 
-      
-          {/* campo Número Materia */}
-          <div className="row">
-            <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="legajoProfesor">
-                Legajo Profesor<span className="text-danger">*</span>:
-              </label>
-            </div>
-            <div className="col-sm-8 col-md-6">
-              <input
-                type="number"
-                id="legajoProfesor"
-                name="legajoProfesor"
-                {...register("legajoProfesor", { 
-                    required: {value: true, message: "Legajo Profesor es requerido" },
-                    minLength: {value: 1, message: "Legajo Profesor debe tener al menos 1 caracter"},
-                    maxLength: {value: 10, message: "Legajo Profesor debe tener menos de 10 caracteres"},
-                })}
-                className={"form-control" + (errors?.legajoProfesor ? "is-invalid" : " ")}
-              />
-              {errors?.legajoProfesor && touchedFields.legajoProfesor && (
-                <div className="invalid-feedback">
-                    {errors?.legajoProfesor?.message}
-                </div>
-              )}
-            </div>
-          </div>
-          
-
           {/* campo nombre */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Nombre">
+              <label className="col-form-label" htmlFor="nombre">
                 Nombre<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
               <input
                 type="text"
-                {...register("Nombre", {
+                {...register("nombre", {
                   required: { value: true, message: "Nombre es requerido" },
                   minLength: {
                     value: 4,
@@ -109,12 +127,12 @@ export default function ProfesoresRegistro({
                 })}
                 autoFocus
                 className={
-                  "form-control " + (errors?.Nombre ? "is-invalid" : "")
+                  "form-control " + (errors?.nombre ? "is-invalid" : "")
                 }
               />
-              {errors?.Nombre && touchedFields.Nombre && (
+              {errors?.nombre && touchedFields.Nombre && (
                 <div className="invalid-feedback">
-                  {errors?.Nombre?.message}
+                  {errors?.nombre?.message}
                 </div>
               )}
             </div>
@@ -123,14 +141,14 @@ export default function ProfesoresRegistro({
           {/* campo apellido */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
-              <label className="col-form-label" htmlFor="Apellido">
+              <label className="col-form-label" htmlFor="apellido">
                 Apellido<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
               <input
                 type="text"
-                {...register("Apellido", {
+                {...register("apellido", {
                   required: { value: true, message: "Apellido es requerido" },
                   minLength: {
                     value: 4,
@@ -143,21 +161,16 @@ export default function ProfesoresRegistro({
                 })}
                 autoFocus
                 className={
-                  "form-control " + (errors?.Apellido ? "is-invalid" : "")
+                  "form-control " + (errors?.apellido ? "is-invalid" : "")
                 }
               />
-              {errors?.Apellido && touchedFields.Apellido && (
+              {errors?.apellido && touchedFields.apellido && (
                 <div className="invalid-feedback">
-                  {errors?.Apellido?.message}
+                  {errors?.apellido?.message}
                 </div>
               )}
             </div>
           </div>
-
-
-
-               
-
         </fieldset>
 
         {/* Botones Grabar, Cancelar/Volver' */}
@@ -187,7 +200,6 @@ export default function ProfesoresRegistro({
             Revisar los datos ingresados...
           </div>
         )}
-
       </div>
     </form>
   );

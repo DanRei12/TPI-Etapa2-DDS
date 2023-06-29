@@ -6,8 +6,10 @@ import { Examenes } from "./components/examenes/Examenes";
 import { Profesores } from './components/profesores/Profesores';
 import { Alumnos } from './components/alumnos/Alumnos';
 import { Comisiones } from './components/comisiones/Comisiones';
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import ModalDialog from "./components/ModalDialog";
+
+//Se importan componentes para el enrutamiento, permitiendo navegación entre paginas o de un SPA
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
   return (
